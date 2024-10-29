@@ -26,10 +26,10 @@ async fn main() -> Result<()> {
     color_eyre::install()?;
     let options = poise::FrameworkOptions {
         commands: vec![
-            commands::buzz::buzz(),
+            commands::misc::buzz(),
+            commands::misc::flicker(),
+            commands::misc::help(),
             commands::draw::draw(),
-            commands::flicker::flicker(),
-            commands::help::help(),
             commands::roll::roll(),
         ],
         // i also mostly don't understand anything after this line

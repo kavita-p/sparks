@@ -2,7 +2,7 @@
 
 use color_eyre::eyre::Result;
 use poise::serenity_prelude as serenity;
-use sparksrs::{commands, Data, Error};
+use sparks::{commands, Data, Error};
 use std::env::var;
 
 async fn on_error(error: poise::FrameworkError<'_, Data, Error>) {

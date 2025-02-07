@@ -147,7 +147,7 @@ pub fn wild_roll(rolls: Rolls, roll_type: &WildType, zero_d: bool, cut: Option<i
 
     if overcut && drop_count > 0 && zero_d {
         description +=
-            "\n\n*Also, hey: what are you even doing that you're cutting  from a roll of 0 dice?*";
+            "\n\n*Also, hey: what are you even doing that you're cutting from a roll of 0 dice?*";
     };
 
     let dice = if zero_d || overcut {

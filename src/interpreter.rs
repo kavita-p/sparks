@@ -87,4 +87,5 @@ pub mod custom;
 pub mod fitd;
 pub mod pbta;
 pub mod sbr;
+pub mod sunblack;
 pub mod ww;

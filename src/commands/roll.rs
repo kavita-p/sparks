@@ -62,6 +62,31 @@ pub async fn custom(
 
 #[poise::command(
     slash_command,
+    description_localized("en-US", "Rolls a Sunblack move.")
+)]
+pub async fn sunblack(
+    ctx: Context<'_>,
+    #[description = "The size of your dice pool."]
+    #[min = 0]
+    pool: i64,
+) -> Result<(), Error> {
+    let (pool, zero_d) = {
+        if pool == 0 {
+            (2, true)
+        } else {
+            (pool, false)
+        }
+    };
+
+    let dice = Rolls::new(pool, 6);
+    let reply = interpreter::sunblack::r#move(dice, zero_d);
+
+    ctx.send(build_roll_reply(reply)).await?;
+    Ok(())
+}
+
+#[poise::command(
+    slash_command,
     description_localized("en-US", "Rolls a Forged in the Dark roll.")
 )]
 pub async fn fitd(

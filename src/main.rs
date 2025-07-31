@@ -5,8 +5,8 @@ use poise::serenity_prelude as serenity;
 use std::env::var;
 
 pub mod commands;
-mod util;
 mod interpreter;
+mod util;
 
 pub struct Data {}
 pub type Error = Box<dyn std::error::Error + Send + Sync>;
@@ -37,6 +37,7 @@ async fn main() -> Result<()> {
             commands::roll::roll(),
             commands::flip::flip(),
             commands::flip::manyflip(),
+            commands::draw::draw(),
         ],
         on_error: |error| Box::pin(on_error(error)),
         pre_command: |ctx| {

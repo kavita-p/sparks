@@ -29,7 +29,6 @@ async fn main() -> Result<()> {
             commands::misc::buzz(),
             commands::misc::flicker(),
             commands::misc::help(),
-            commands::draw::draw(),
             commands::roll::roll(),
         ],
         // i also mostly don't understand anything after this line

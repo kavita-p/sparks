@@ -16,6 +16,5 @@ impl Display for Deck {
     }
 }
 
-pub mod draw;
 pub mod misc;
 pub mod roll;

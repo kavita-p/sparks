@@ -71,7 +71,7 @@ fn create_description(status: &RollStatus, roll_type: &WildType, doubles: bool) 
             Ratings => "\n\n**Twist**\nAn unexpected event in addition to the result.",
             _ => "",
         }
-    };
+    }
 
     description
 }
@@ -133,22 +133,22 @@ pub fn wild_roll(rolls: Rolls, roll_type: &WildType, zero_d: bool, cut: Option<i
     let mut title = format!("__{roll_type}__ [{score}] {title_text}");
     if doubles && !special_roll {
         title += " with a twist";
-    };
+    }
 
     let mut description = create_description(&status, roll_type, doubles);
 
     if overcut {
         description += "\n\n**Overcut**\nYou cut your entire dice pool! Rolled a single d6, treating triumphs as conflicts.";
-    };
+    }
 
     if zero_d && drop_count == 0 {
         description += "\n\n**Zero Dice**\nYou had nothing in your dice pool! Rolled a single d6, treating triumphs as conflicts.";
-    };
+    }
 
     if overcut && drop_count > 0 && zero_d {
         description +=
             "\n\n*Also, hey: what are you even doing that you're cutting from a roll of 0 dice?*";
-    };
+    }
 
     let dice = if zero_d || overcut {
         score.to_string()

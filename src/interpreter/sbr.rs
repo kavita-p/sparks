@@ -5,6 +5,7 @@ use crate::{
     },
     Rolls,
 };
+use std::fmt::Write;
 
 pub fn check(rolls: Rolls, zero_d: bool, cut: Option<i64>) -> Reply {
     let drop_count = cut.unwrap_or(0).try_into().unwrap_or(0);
@@ -46,10 +47,10 @@ pub fn check(rolls: Rolls, zero_d: bool, cut: Option<i64>) -> Reply {
         let mut desc = format!("Rolled **{score}** on {}d10", rolls.dice.len());
 
         if drop_count > 0 {
-            desc.push_str(&format!(" (cut {drop_count}d.)"));
+            write!(desc, " (cut {drop_count}d.)").unwrap();
         } else {
             desc.push('.');
-        };
+        }
 
         (title_literal.to_string(), desc, status)
     };

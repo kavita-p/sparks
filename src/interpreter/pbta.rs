@@ -6,6 +6,7 @@ use crate::{
     Rolls,
 };
 use std::cmp::Ordering;
+use std::fmt::Write;
 
 use super::ConfidenceLevel;
 
@@ -39,8 +40,8 @@ pub fn move_roll(
             0 => advantages = None,
             1..=i64::MAX => sorted_dice.reverse(),
             i64::MIN..=-1 => (),
-        };
-    };
+        }
+    }
 
     let score = sorted_dice.into_iter().take(2).sum::<i64>() + stat;
 
@@ -67,22 +68,22 @@ pub fn move_roll(
 
     match stat.cmp(&0) {
         Ordering::Greater => {
-            description.push_str(&format!(" + {stat}."));
+            write!(description, " + {stat}.").unwrap();
         }
         Ordering::Equal => {
             description.push('.');
         }
         Ordering::Less => {
-            description.push_str(&format!(" - {}.", stat.saturating_abs()));
+            write!(description, " - {}.", stat.saturating_abs()).unwrap();
         }
-    };
+    }
 
     if let Some(confidence) = confidence {
         let (original, replacement) = match confidence {
             ConfidenceLevel::Confidence => (1, 6),
             ConfidenceLevel::Desperation => (6, 1),
         };
-        description.push_str(&format!("\n\nBecause you rolled with **{confidence}**, {original}s were treated as **{replacement}**s."));
+        write!(description, "\n\nBecause you rolled with **{confidence}**, {original}s were treated as **{replacement}**s.").unwrap();
     }
 
     if score >= 12 {

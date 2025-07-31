@@ -82,7 +82,7 @@ pub fn forged_roll(rolls: Rolls, roll_type: &ForgedType, zero_d: bool) -> Reply 
         }
     } else if sixes < 2 && roll_type != &Clear {
         description.push('.');
-    };
+    }
 
     if roll_type == &Clear {
         description.push_str(

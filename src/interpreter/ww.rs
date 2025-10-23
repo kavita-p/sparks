@@ -84,7 +84,7 @@ pub fn wild_roll(rolls: Rolls, roll_type: &WildType, zero_d: bool, cut: Option<i
     let overcut = drop_count >= rolls.dice.len();
 
     let (score, doubles) = if zero_d || overcut {
-        (rand::thread_rng().gen_range(1..=6), false)
+        (rand::rng().random_range(1..=6), false)
     } else if drop_count > 0 {
         let mut sorted_dice = rolls.dice.clone();
         sorted_dice.sort_by(|a, b| b.cmp(a));

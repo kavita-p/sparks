@@ -1,8 +1,8 @@
 use std::collections::HashSet;
 use std::hash::Hash;
 
-use rand::distributions::Uniform;
-use rand::Rng;
+use rand::distr::{Distribution, Uniform};
+use rand::rng;
 
 pub mod commands;
 mod interpreter;
@@ -20,19 +20,18 @@ pub struct Rolls {
 }
 
 impl Rolls {
-    #[must_use]
     pub fn new(count: i64, sides: i64) -> Self {
-        let count = count.try_into().unwrap_or(0);
-        let sides = Uniform::from(1..=sides);
+        let count = count.try_into().unwrap_or(1);
+        let sides = Uniform::new_inclusive(1, sides).unwrap();
 
-        let dice: Vec<i64> = rand::thread_rng().sample_iter(&sides).take(count).collect();
+        let dice: Vec<i64> = sides.sample_iter(rng()).take(count).collect();
+        
         let max = *dice.iter().max().unwrap_or(&0);
         let min = *dice.iter().min().unwrap_or(&0);
 
         Self { max, min, dice }
     }
 
-    #[must_use]
     pub fn join_dice(self) -> String {
         self.dice
             .into_iter()
@@ -41,7 +40,6 @@ impl Rolls {
             .join(", ")
     }
 
-    #[must_use]
     pub fn join_dice_confidently(self, original: i64, replacement: i64) -> String {
         self.dice
             .into_iter()
@@ -56,7 +54,6 @@ impl Rolls {
             .join(", ")
     }
 
-    #[must_use]
     pub fn join_cut_dice(self, drop_count: usize) -> String {
         let mut largest_dice = self
             .dice

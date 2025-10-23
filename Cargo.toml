@@ -4,7 +4,7 @@ version = "1.4.0"
 edition = "2021"
 
 [dependencies]
-rand = "0.8.5"
+rand = "0.9"
 poise = { version = "0.6" }
 tokio = { version = "1.41", features = ["full"] }
 color-eyre = { version = "0.6", default-features = false }
@@ -13,5 +13,7 @@ color-eyre = { version = "0.6", default-features = false }
 pretty_assertions = "1.4"
 
 [lints.clippy]
-pedantic = "warn"
-nursery = "warn"
+pedantic = { level = "warn", priority = -1 }
+nursery = { level = "warn", priority = -1 }
+must_use_candidate = "allow"
+missing_panics_doc= "allow"

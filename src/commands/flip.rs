@@ -14,8 +14,7 @@ pub async fn flip(
     tails: Option<String>
 ) -> Result<(), Error> {
 
-    let heads = heads.unwrap_or("heads".to_string());
-    let tails = tails.unwrap_or("tails".to_string());
+    let (heads, tails) = parse_faces(heads, tails);
 
     let face = if random_bool(0.5) { heads } else { tails };
 
@@ -46,10 +45,9 @@ pub async fn manyflip(
     #[description = "The label for the tails face."]
     tails: Option<String>
 ) -> Result<(), Error> {
-    let count = count.unwrap_or(1).try_into().unwrap_or(1);
 
-    let heads = heads.unwrap_or("heads".to_string());
-    let tails = tails.unwrap_or("tails".to_string());
+    let count = count.unwrap_or(1).try_into().unwrap_or(1);
+    let (heads, tails) = parse_faces(heads, tails);
 
     let faces = Bernoulli::new(0.5)
         .unwrap()
@@ -76,4 +74,10 @@ pub async fn manyflip(
     .await?;
 
     Ok(())
+}
+
+fn parse_faces(heads: Option<String>, tails: Option<String>) -> (String, String) {
+    let heads = heads.unwrap_or_else(|| "heads".to_string());
+    let tails = tails.unwrap_or_else(|| "tails".to_string());
+    (heads, tails)
 }

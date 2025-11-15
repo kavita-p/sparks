@@ -18,7 +18,9 @@ Sparks' dice-rolling commands are all subcommands of `/roll`. For example, `/rol
 
 ### Coins
 
-- `/flip`: flips a standard coin.
+- `/flip`: flips a standard coin. Optionally accepts labels for the coin's faces.
+
+- `/manyflip`: flips multiple coins. Optionally accepts labels for the coins' faces.
 
 ### Misc.
 

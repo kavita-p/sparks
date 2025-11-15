@@ -6,8 +6,6 @@ use sparks::{commands, Data, Error};
 use std::env::var;
 
 async fn on_error(error: poise::FrameworkError<'_, Data, Error>) {
-    // this is a custom error handler poise included that i don't understand
-    // however i also do not care to learn
     match error {
         poise::FrameworkError::Setup { error, .. } => panic!("Failed to start bot: {error:?}"),
         poise::FrameworkError::Command { error, ctx, .. } => {
@@ -33,7 +31,6 @@ async fn main() -> Result<()> {
             commands::flip::flip(),
             commands::flip::manyflip(),
         ],
-        // i also mostly don't understand anything after this line
         on_error: |error| Box::pin(on_error(error)),
         pre_command: |ctx| {
             Box::pin(async move {

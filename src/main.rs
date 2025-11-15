@@ -30,6 +30,7 @@ async fn main() -> Result<()> {
             commands::misc::flicker(),
             commands::misc::help(),
             commands::roll::roll(),
+            commands::flip::flip(),
         ],
         // i also mostly don't understand anything after this line
         on_error: |error| Box::pin(on_error(error)),

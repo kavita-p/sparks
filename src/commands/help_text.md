@@ -16,10 +16,6 @@ Sparks' dice-rolling commands are all subcommands of `/roll`. For example, `/rol
 
 - `/roll custom`: rolls any number of dice with any number of sides. Requires the number of dice and the number of sides per die (all dice will be rolled with the same number of sides.) Doesn't accept negative numbers.
 
-### Cards
-
-- `/draw`: generates a card from a deck at random. Does _not_ keep track of decks or eliminate cards from them. Optionally accepts a deck type, defaulting to a standard 52-card deck.
-
 ### Misc.
 
 - `/buzz`: Sparks will reply with "Zap!"

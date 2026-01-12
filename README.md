@@ -12,6 +12,33 @@ Sparks uses [serenity.rs' poise framework](https://github.com/serenity-rs/poise)
 
 The meat of Sparks' code can be found in `src/interpreters`, which is responsible for taking vectors of dice and generating results from them. It uses a struct called `Rolls` to store dice, which can be found in `src/lib.rs`. `src/commands` is responsible for handling command input and returning replies.
 
+## Deploy
+I use an Alpine Linux container to build Sparks and deploy her on a VM running the same OS. Shout out to [this article](https://medium.com/@kasthor/cross-compiling-rust-from-macos-to-linux-using-podman-f654a49f2288) for teaching me how to do that.
+
+Here's the short version:
+
+0. [Install podman](https://podman.io/docs/installation)
+1. Build the container
+
+```shell
+podman build -t rust-builder -f Containerfile
+```
+
+2. Place the `cargo-podman` script in your ~/.cargo/bin and make it executable:
+
+```shell
+mkdir -p ~/.cargo/bin # if it doesn't exist
+mv cargo-podman ~/.cargo/bin/
+chmod +x ~/.cargo/bin/cargo-podman
+```
+
+3. Use it like a cargo subcommand:
+
+```shell
+cargo podman build --release
+```
+The resulting binary, located at `target/release/sparks`, is supposedly ready to run on any Linux system, but I've only tested it on Alpine. Also presumably this works mostly the same on Docker.
+
 ## Contributions
 
 I am open to these! If you have ideas for how to improve Sparks, please let me know.

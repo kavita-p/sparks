@@ -1,0 +1,18 @@
+#! /usr/bin/env bash
+
+set -e
+
+run_podman() {
+    podman run -tiv "$(pwd)":/usr/src/build \
+    -v cargo-git:/home/rust/.cargo/git \
+    -v cargo-registry:/home/rust/.cargo/registry \
+    rust-builder cargo "$@"
+}
+
+if [ "$1" = "podman" ]; then
+    shift
+    run_podman "$@"
+else
+    echo "Usage: cargo podman <cargo-command>"
+    exit 1
+fi

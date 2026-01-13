@@ -1,6 +1,6 @@
 use crate::{
+    dice::Rolls,
     interpreter::{Reply, RollStatus},
-    util::Rolls,
 };
 
 pub fn roll(rolls: Rolls, count: i64, sides: i64) -> Reply {

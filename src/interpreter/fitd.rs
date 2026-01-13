@@ -1,11 +1,11 @@
 use crate::{
+    dice::Rolls,
     interpreter::{
         ForgedType,
         ForgedType::{Action, Clear, Fortune, Resist},
         Reply,
         RollStatus::{Crit, Failure, FullSuccess, MixedSuccess},
     },
-    util::Rolls,
 };
 
 pub fn forged_roll(rolls: Rolls, roll_type: &ForgedType, zero_d: bool) -> Reply {

@@ -1,9 +1,9 @@
 use crate::{
+    dice::Rolls,
     interpreter::{
         Reply,
         RollStatus::{Crit, Failure, FullSuccess, MixedSuccess},
     },
-    util::Rolls,
 };
 use std::fmt::Write;
 

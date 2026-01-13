@@ -5,8 +5,9 @@ use poise::serenity_prelude as serenity;
 use std::env::var;
 
 pub mod commands;
-mod util;
+mod dice;
 mod interpreter;
+mod util;
 
 pub struct Data {}
 pub type Error = Box<dyn std::error::Error + Send + Sync>;

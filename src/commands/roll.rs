@@ -1,7 +1,7 @@
 use crate::{
+    dice::Rolls,
     interpreter::{self, ConfidenceLevel, ForgedType, Reply, RollStatus, WildType},
-    util::Rolls,
-    Context, Error, 
+    Context, Error,
 };
 use poise::{serenity_prelude as serenity, CreateReply};
 use serenity::all::Color;

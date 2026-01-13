@@ -1,6 +1,7 @@
 use rand::Rng;
 
 use crate::{
+    dice::Rolls,
     interpreter::{
         Reply,
         RollStatus::{Crit, Failure, FullSuccess, MixedSuccess},
@@ -9,7 +10,7 @@ use crate::{
             Acquisition, Action, Attack, Creation, Defense, Ratings, Recovery, Watch, Weather,
         },
     },
-    util::{has_unique_elements, Rolls},
+    util::has_unique_elements,
 };
 
 use super::RollStatus;

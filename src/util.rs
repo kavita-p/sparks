@@ -11,7 +11,7 @@ where
 }
 
 #[cfg(test)]
-mod lib_tests {
+mod util_tests {
     use super::*;
 
     #[test]

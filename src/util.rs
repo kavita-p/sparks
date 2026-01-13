@@ -1,8 +1,6 @@
 use std::collections::HashSet;
 use std::hash::Hash;
 
-// utils
-
 pub fn has_unique_elements<T>(iter: T) -> bool
 where
     T: IntoIterator,

@@ -1,7 +1,6 @@
 use rand::Rng;
 
 use crate::{
-    has_unique_elements,
     interpreter::{
         Reply,
         RollStatus::{Crit, Failure, FullSuccess, MixedSuccess},
@@ -10,7 +9,7 @@ use crate::{
             Acquisition, Action, Attack, Creation, Defense, Ratings, Recovery, Watch, Weather,
         },
     },
-    Rolls,
+    util::{has_unique_elements, Rolls},
 };
 
 use super::RollStatus;
@@ -58,7 +57,7 @@ fn create_description(status: &RollStatus, roll_type: &WildType, doubles: bool) 
             }
         }
         Crit => unreachable!()
-    }.to_string();
+    }.to_owned();
 
     if doubles {
         description += match roll_type {

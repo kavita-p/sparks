@@ -1,17 +1,8 @@
 use std::collections::HashSet;
 use std::hash::Hash;
-
 use rand::distr::{Distribution, Uniform};
 use rand::rng;
 
-pub mod commands;
-mod interpreter;
-
-// i don't understand the data struct or why poise has its own special errors either
-// but once again i truly don't care to learn
-pub struct Data {}
-pub type Error = Box<dyn std::error::Error + Send + Sync>;
-type Context<'a> = poise::Context<'a, Data, Error>;
 
 pub struct Rolls {
     pub max: i64,
@@ -91,7 +82,7 @@ impl Rolls {
 
 // utils
 
-fn has_unique_elements<T>(iter: T) -> bool
+pub fn has_unique_elements<T>(iter: T) -> bool
 where
     T: IntoIterator,
     T::Item: Eq + Hash,

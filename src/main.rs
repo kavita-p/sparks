@@ -2,8 +2,15 @@
 
 use color_eyre::eyre::Result;
 use poise::serenity_prelude as serenity;
-use sparks::{commands, Data, Error};
 use std::env::var;
+
+pub mod commands;
+mod util;
+mod interpreter;
+
+pub struct Data {}
+pub type Error = Box<dyn std::error::Error + Send + Sync>;
+pub type Context<'a> = poise::Context<'a, Data, Error>;
 
 async fn on_error(error: poise::FrameworkError<'_, Data, Error>) {
     match error {

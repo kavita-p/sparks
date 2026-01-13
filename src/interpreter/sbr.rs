@@ -3,7 +3,7 @@ use crate::{
         Reply,
         RollStatus::{Crit, Failure, FullSuccess, MixedSuccess},
     },
-    Rolls,
+    util::Rolls,
 };
 use std::fmt::Write;
 
@@ -52,7 +52,7 @@ pub fn check(rolls: Rolls, zero_d: bool, cut: Option<i64>) -> Reply {
             desc.push('.');
         }
 
-        (title_literal.to_string(), desc, status)
+        (title_literal.to_owned(), desc, status)
     };
 
     Reply {

@@ -3,7 +3,7 @@ use crate::{
         Reply,
         RollStatus::{Crit, Failure, FullSuccess, MixedSuccess},
     },
-    Rolls,
+    util::Rolls,
 };
 use std::cmp::Ordering;
 use std::fmt::Write;
@@ -18,7 +18,7 @@ pub fn move_roll(
     confidence: Option<ConfidenceLevel>,
 ) -> Reply {
     let mut sorted_dice = rolls.dice.clone();
-    let dice_count = rolls.dice.len().to_string();
+    let dice_count = rolls.dice.len().to_owned();
 
     let dice_text = if let Some(confidence) = &confidence {
         let (original, replacement) = match confidence {
@@ -53,12 +53,12 @@ pub fn move_roll(
     };
 
     let dice_text_count = advantages.map_or_else(
-        || "2".to_string(),
+        || "2".to_owned(),
         |net_advantage| {
             let direction = if net_advantage >= 0 {
-                "best".to_string()
+                "best".to_owned()
             } else {
-                "worst".to_string()
+                "worst".to_owned()
             };
             format!("{direction} 2 of {dice_count}")
         },
@@ -98,7 +98,7 @@ pub fn move_roll(
     }
 
     Reply {
-        title: title_literal.to_string(),
+        title: title_literal.to_owned(),
         description,
         status,
         dice: dice_text,

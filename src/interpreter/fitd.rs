@@ -5,7 +5,7 @@ use crate::{
         Reply,
         RollStatus::{Crit, Failure, FullSuccess, MixedSuccess},
     },
-    Rolls,
+    util::Rolls,
 };
 
 pub fn forged_roll(rolls: Rolls, roll_type: &ForgedType, zero_d: bool) -> Reply {
@@ -39,10 +39,10 @@ pub fn forged_roll(rolls: Rolls, roll_type: &ForgedType, zero_d: bool) -> Reply 
             MixedSuccess => "Mixed success!",
             Failure => "Failure!",
         }
-        .to_string(),
+        .to_owned(),
         Resist => {
             if status == Crit {
-                "Clear 1 stress!".to_string()
+                "Clear 1 stress!".to_owned()
             } else {
                 format!("Take **{}** stress to resist.", 6 - score)
             }
@@ -53,7 +53,7 @@ pub fn forged_roll(rolls: Rolls, roll_type: &ForgedType, zero_d: bool) -> Reply 
             MixedSuccess => "Standard effect.",
             Failure => "Reduced effect.",
         }
-        .to_string(),
+        .to_owned(),
         Clear => {
             format!("Clear **{score}** stress.")
         }

@@ -1,6 +1,7 @@
 use crate::{
     interpreter::{self, ConfidenceLevel, ForgedType, Reply, RollStatus, WildType},
-    Context, Error, Rolls,
+    util::Rolls,
+    Context, Error, 
 };
 use poise::{serenity_prelude as serenity, CreateReply};
 use serenity::all::Color;
@@ -35,7 +36,7 @@ fn build_roll_reply(reply: Reply) -> CreateReply {
         serenity::CreateEmbed::new()
             .title(reply.title)
             .description(reply.description)
-            .fields(vec![("Rolls".to_string(), reply.dice, true)])
+            .fields(vec![("Rolls".to_owned(), reply.dice, true)])
             .color(status_colors(&reply.status)),
     )
 }

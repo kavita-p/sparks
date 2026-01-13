@@ -77,7 +77,7 @@ pub async fn manyflip(
 }
 
 fn parse_faces(heads: Option<String>, tails: Option<String>) -> (String, String) {
-    let heads = heads.unwrap_or_else(|| "heads".to_string());
-    let tails = tails.unwrap_or_else(|| "tails".to_string());
+    let heads = heads.unwrap_or_else(|| "heads".to_owned());
+    let tails = tails.unwrap_or_else(|| "tails".to_owned());
     (heads, tails)
 }

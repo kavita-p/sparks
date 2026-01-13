@@ -1,9 +1,9 @@
 use crate::{
+    dice::Rolls,
     interpreter::{
         Reply,
         RollStatus::{Crit, Failure, FullSuccess, MixedSuccess},
     },
-    Rolls,
 };
 
 pub fn r#move(rolls: Rolls, zero_d: bool) -> Reply {
@@ -31,12 +31,11 @@ pub fn r#move(rolls: Rolls, zero_d: bool) -> Reply {
     };
 
     let title = match status {
-        Crit => "Full success!",
-        FullSuccess => "Full success!",
+        Crit | FullSuccess => "Full success!",
         MixedSuccess => "Mixed success!",
         Failure => "Failure!",
     }
-    .to_string();
+    .to_owned();
 
     let mut description = format!("Got **{score}** on {pool}d");
 

@@ -6,6 +6,7 @@ pub struct Rolls {
     pub min: i64,
     pub dice: Vec<i64>,
 }
+
 impl Rolls {
     pub fn new(count: i64, sides: i64) -> Self {
         let count = count.try_into().unwrap_or(1);

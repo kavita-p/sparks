@@ -10,7 +10,7 @@ Sparks uses [serenity.rs' poise framework](https://github.com/serenity-rs/poise)
 
 ## Code
 
-The meat of Sparks' code can be found in `src/interpreters`, which is responsible for taking vectors of dice and generating results from them. It uses a struct called `Rolls` to store dice, which can be found in `src/lib.rs`. `src/commands` is responsible for handling command input and returning replies.
+The meat of Sparks' code can be found in `src/interpreters`, which is responsible for taking vectors of dice and generating results from them. It uses a struct called `Rolls` to store dice, which can be found in `src/lib.rs`. `src/commands` is responsible for handling command input and returning replies. The code for the `flip` command is in `src/commands/flip.rs`, while `src/commands/misc.rs` contains the code for `buzz`, `flicker`, and `help`.
 
 ## Deploy
 I use an Alpine Linux container to build Sparks and deploy her on a VM running the same OS. Shout out to [this article](https://medium.com/@kasthor/cross-compiling-rust-from-macos-to-linux-using-podman-f654a49f2288) for teaching me how to do that.

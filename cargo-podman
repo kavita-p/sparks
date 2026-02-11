@@ -1,9 +1,10 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 run_podman() {
-    podman run -tiv "$(pwd)":/usr/src/build \
+    podman run -ti \
+    -v "$(pwd)":/usr/src/build \
     -v cargo-git:/home/rust/.cargo/git \
     -v cargo-registry:/home/rust/.cargo/registry \
     rust-builder cargo "$@"
